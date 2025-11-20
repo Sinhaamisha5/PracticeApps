@@ -1,0 +1,23 @@
+name: Java Spring CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Build JAR
+        run: mvn -B package --file pom.xml
+
+      - name: Build Docker image
+        run: docker build -t spring-app .

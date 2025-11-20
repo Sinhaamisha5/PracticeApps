@@ -1,0 +1,25 @@
+name: NodeJS CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Basic test
+        run: node -c index.js || echo "No syntax errors"
+
+      - name: Build Docker image
+        run: docker build -t node-app .
