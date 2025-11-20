@@ -18,6 +18,8 @@ jobs:
 
       - name: Build JAR
         run: mvn -B package --file pom.xml
+        working-directory: java-springboot-app/src/main/java/com/example/demo/
 
       - name: Build Docker image
         run: docker build -t spring-app .
+        working-directory: java-springboot-app/src/main/java/com/example/demo/

@@ -17,6 +17,8 @@ jobs:
 
       - name: Build App
         run: go build main.go
+        working-directory: go-app
 
       - name: Build Docker image
         run: docker build -t go-app .
+        working-directory: go-app
